@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proof}{Proof}[section]
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{DanDoge}
+\lhead{Notes on convex sets}
+\rfoot{Page \thepage}
+\cfoot{latest version: 2018/01/25}
+
+\title{Notes on convex sets}
+\date{2018-01-25}
+\author{DanDoge}
+
+\begin{document}
+
+\section{Affine and convex sets}
+  \subsection{lines and line segments}
+    \paragraph{} \textit{line} is points of the form $y = \theta x_1 + (1 - \theta) x_2$ where $\theta \in R$, and $x_1 \neq x_2$.
+    \paragraph{} \textit{line segement} corresponds to points where parameter $\theta$ is between 0 and 1.
+  \subsection{affine sets}
+    \paragraph{} a set is \textit{affine} iff for any $x_1, x_2 \in C$ and $\theta \in R$, we have $\theta x_1 + (1 - \theta) x_2 \in C$. This idea can be generalized to more than two points. That is to say, a affine set contains every affine combination of its points: $C$ is an affine set, $x_1, x_2,...,x_k \in C$, and $\theta_1 +...+ \theta_k = 1$, then the point $\theta_1 x_1 + ... + \theta_k x_k$ also belongs to $C$.
+    \paragraph{} if $C$ is an affine set and $x_0 \in C$, then the set $V = C - x_0 = \{x\ -\ x_0\ |\ x\ \in C \}$ is a subspace. thus any affine set could be expressed as a subspace plus an offset, and the subspace doesnot depend on the choice of $x_0$.
+    \paragraph{} the set of all affine combination of points in some set $C$ is called the \textit{affine hull} of $C$:
+    \begin{equation}
+      \mathbf{affC} = \{\theta_1 x_1 + ... + \theta_k x_k\ |\  x_1, x_2,...,x_k \in C,\ \theta_1 +...+ \theta_k = 1\}.
+    \end{equation}
+  \subsection{affine dimension and relative interior}
+    \paragraph{} we define the $\textit{affine dimension}$ of a set $C$ as the dimension of its affine hull. if the affine dimension of $C$ is less than n, then the set lies in a affine set $\mathbf{aff C} \neq \mathbf{R}^n$. we define $\textit{relative interior}$ if the set $C$, denoted $\mathbf{relintC}$, as its interior relative to $\mathbf{affC}$:
+    \begin{equation}
+      \mathbf{relintC} = \{ x \in C\  |\  B(x, r) \cap \textit{aff}C \subset C \ for\ some\ r > 0\}
+    \end{equation}
+    where $B(x, r) = \{y | \left \| y - x \right \| \leq r\}$. we can then define the \textit{ralative boundary} of a set $C$ as $\mathbf{cl}C$ \\ $\mathbf{relint}C$, where $\mathbf{cl}C$ is the closure of $C$.
+  \subsection{convex sets}
+    \paragraph{} a seet $C$ is \textit{convex} if the line segment between any two points in $C$ lies in $C$. roughly speaking, a set is convex if every point in the set can be seen by every other point.
+    \paragraph{} we call a point of the form $\theta_1 x_1 + ... + \theta_k x_k$, where $\theta_1 +...+ \theta_k = 1$, and $\theta_i \ge 0$, a \textit{convex combination} of the points $x_1,..., x_k$. a set is convex iff it contains every convex combination of its points. the \textit{convex hull} of a set $C$, denoted $\mathbf{conv} C$, is the set of all convex combinations of the points in $C$. the idea of a convex combination can be generalized to include infinite sums, integrals, and probability distributions. suppose $\theta_i$ satisfy
+    \begin{equation}
+      \theta_i \ge 0, i = 1,2,...,\quad \sum_{i = 1}^{\infty} \theta_i = 1,
+    \end{equation}
+    and $x_1, x_2,... \in C$, where $C \subset \mathbf{R}^n$ is convex, then
+    \begin{equation}
+      \sum_{i = 1}^{\infty} \theta_i x_i \in C,
+    \end{equation}
+    if the series converges. more generally, suppose $C \subset \mathbf{R}^n$ is convex and $x$ is a random vector with $x \in C$ with probability one, then $\mathbf{E}x \in C$.
+  \subsection{cones}
+    \paragraph{} a set is called a \textit{cone}, or \textit{nonnegative homogeneous}, if for every $x \in C$ and $\theta \ge 0$ we have $\theta x \in C$. a point of the form $\theta_1 x_1 + ... + \theta_k x_k$ with $\theta_i \ge 0$ is called \textit{conic combination} or a \textit{nonnegative linear combination} of $x_i$. a set $C$ is a convex cone iff it contains all conic combinations of its elements. this idea could also be generalized to infinite sums and integrals. the \textit{conic hull} of a set $C$ is the set of all conic combinations of points in $C$.
+
+\section{some important examples}
+  \subsection{hyperplanes and halfspaces}
+    \paragraph{} a \textit{hyperplane} is a set of the form
+    \begin{equation}
+      \{x\ |\ a^Tx = b\},
+    \end{equation}
+    where $a \in \mathbf{R}^n,\ a \neq 0$, and $b \in \mathbf{R}$. this repersentation can inturn be expressed as
+    \begin{equation}
+      \{x\ |\ a^T(x - x_0) = 0\} = x_0 + a^{\perp},
+    \end{equation}
+    where $a^{\perp}$ denotes the orthogonal complement of $a$, $i.e.$, the set of all vectors orthogonal to it.
+    \paragraph{} a hyperplane divides $\mathbf{R}^n$ into two \textit{halfspaces}, which a set of the form
+    \begin{equation}
+      \{x\ |\ a^Tx \leq b\},
+    \end{equation}
+    where $a \neq 0$
+  \subsection{euclidean balls and ellipsoids}
+    \paragraph{} a \textit{(euclidean) ball} in $\mathbf{R}^n$ has the form
+    \begin{equation}
+      B(x_c, r) = \{x\ |\ \| x \ - \ x_c \| \leq \ r\} = \{x\ |\ (x\ -\ x_c)^T(x\ -\ x_c) \leq \ r^2\},
+    \end{equation}
+    where $r\ \ge 0$, and the vector $x_c$ is the \textit{center} of the ball and the saclar $r$ is its $radius$. another common repersentation for the euclidean ball is
+    \begin{equation}
+      B(x_c, r) = \{x_c\ +\ ru\ |\ \|u\|\ \leq\ 1\},
+    \end{equation}
+    a euclidean ball is a convex set (use the homogeneity and triangle inequality for $\|\cdot\|_2$)
+    \paragraph{} a related family of convex sets is the \textit{ellipsoids}, which have the form
+    \begin{equation}
+      \mathcal{E}\ =\ \{x\ |\ (x - x_c)^TP^{-1}(x - x_c)\leq 1\},
+    \end{equation}
+    where $P$ is symmetric and positive definite. the vector $x_c \in \mathbf{R}^n$ is the \textit{center} of the ellipsoid. the matrix $P$ determines how far the ellipsoid extends in every direction from $x_c$ by the square root of its eigenvalues. another common repersentation of an ellipsoid is
+    \begin{equation}
+      \mathcal{E}\ =\ \{x_c + Au\ |\ \|u\|_2\ \leq\ 1\},
+    \end{equation}
+    where $A$ is the square and nonsingular, in fact, $A\ =\ P^{1/2}$. when the matrix $A$ is symmetric positive semidefinite but not singular, the set is called a \textit{degenerate ellipsoid}, its affine dimension is equal to the rank of $A$, and it is also convex.
+  \subsection{norm balls and norm cones}
+    \paragraph{} a \textit{norm ball} of radius $r$ and center $x_c$ given by $\{x\ |\ \|x - x_c\|\ \leq\ r\}$, is convex. the \textit{norm cone} associated with the norm $\|\cdot\|$ is the set
+    \begin{equation}
+      C\ =\ \{(x,t)\ |\ \|x\|\ \leq\ t\}\ \subset\ \mathbf{R}^{n + 1}.
+    \end{equation}
+    it is also a convex set, as the name suggests.
+  \subsection{polyhera}
+    \paragraph{} a \textit{polyheron} is defined as the solution set of a finite number of linear equalities and inequalities:
+    \begin{equation}
+      \mathcal{P} = \{x\ |\ a_j^Tx \leq b_j,\ j = 1,...,m,\ c_j^Tx = d_j,\ j = 1,...,p\}.
+    \end{equation}
+    it will be convenient to use the compact notation
+    \begin{equation}
+      \mathcal{P} = \{x\ |\ Ax\preceq b,\ Cx = d\},
+    \end{equation}
+    where
+    \begin{equation}
+      A =
+      \begin{bmatrix}
+        a_1^T \\
+        \vdots \\
+        a_m^T
+      \end{bmatrix}
+      ,\quad
+      C =
+      \begin{bmatrix}
+        c_1^T \\
+        \vdots \\
+        c_p^T
+      \end{bmatrix}
+      ,
+    \end{equation}
+    and the symbol $\preceq$ denotes \textit{vector inequality} or \textit{componentwise inequality} in $\mathbf{R}^m$.
+    \subsubsection{simplexes}
+      t.b.c.
+    \subsubsection{convex hull description of polyhedra}
+      t.b.c
+
+
+\end{document}
