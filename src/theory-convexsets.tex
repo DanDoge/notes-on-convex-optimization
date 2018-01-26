@@ -122,9 +122,61 @@
     \end{equation}
     and the symbol $\preceq$ denotes \textit{vector inequality} or \textit{componentwise inequality} in $\mathbf{R}^m$.
     \subsubsection{simplexes}
-      t.b.c.
+      \paragraph{} suppose the $k + 1$ points $v+0, ..., v_k\ \in\ \mathbf{R}^n$ are \textit{affinely independent}, then the simplex determined by then is given by
+      \begin{equation}
+        C = \mathbf{conv}\{v_0,...,v_k\} = \{\theta_0v_0 +\dots+\theta_kv_k\ |\ \theta \succeq 0,\ \mathbf{1}^T\theta = 1\},
+      \end{equation}
+      where $\mathbf{1}$ denotes the vector with all entries one. to show the simplex is a polyheron, we define $y = (\theta_1,...,\theta_k)$ and
+      \begin{equation}
+        B = [v_1 - v_0\ \dots\ v_k - v_0]\ \in\ \mathbf{R}^{n\*k},
+      \end{equation}
+      we can say that $x \in C$ iff
+      \begin{equation}
+        x = v_0 + By
+      \end{equation}
+      we note that affine independence of the points implies that the matrix $B$ has rank $k$, therefore there exists a nonsingular matrix $A = (A_1,A_2)\in\mathbf{R}^{n\*n}$ s.t.
+      \begin{equation}
+        AB =
+        \begin{bmatrix}
+          A_1 \\
+          A_2
+        \end{bmatrix}
+        B =
+        \begin{bmatrix}
+          I \\
+          0
+        \end{bmatrix}.
+      \end{equation}
+      in other words, we have $x \in C$ iff
+      \begin{equation}
+        A_2x = A_2v_0,\quad A_1x \succeq A_1v_0,\quad \mathbf{1}^TA_1x \leq 1 + \mathbf{1}^TA_1v_0.
+      \end{equation}
     \subsubsection{convex hull description of polyhedra}
-      t.b.c
-
-
+      \paragraph{} the convex hull of a finite set $\{v_1,...,v_k\}$ is
+      \begin{equation}
+        \mathbf{conv}\{v_1,...,v_k\} = \{\theta_1v_1+...,\theta_kv_k\ |\ \theta \succeq 0,\ \mathbf{1}^T\theta = 1\}.
+      \end{equation}
+      a generalization of this convex hull description is
+      \begin{equation}
+        \{\theta_1v_1+...,\theta_kv_k\ |\ \theta_1+\dots+\theta_m\ = 1,\ \theta_i \ge 0,\ i = 1,...,k\},
+      \end{equation}
+      this defines a polyheron, and conversely, every polyheron can be repersented in this form.
+  \subsection{the positive semidefinite cone}
+    \paragraph{} we use the notation $\mathbf{S}^n\ \mathbf{S}_+^n\ \mathbf{S}_{++}^n$ to be analogous to $\mathbf{R}_+\ \mathbf{R}_{++}$, then the set $\mathbf{S}_+^n$ is a convex cone.
+\section{operations that preserve convexity}
+  \subsection{intersection}
+    \paragraph{} convexity is preserved under intersection: if $S_\alpha$ is convex for every $\alpha \in \mathcal{A}$, then $\cap_{\alpha \in \mathcal{A}} S_\alpha$ is convex.
+  \subsection{affine functions}
+    \paragraph{} suppose $S \subset \mathbf{R}^n$ is convex and $f : \mathbf{R}^n \to \mathbf{R}^m$ is an affine function. then the image of $S$ under $f$,
+    \begin{equation}
+      f(S) = \{f(x)\ |\ x \in S\},
+    \end{equation}
+    is convex. similarly, the \textit{inverse image} if $S$ under $f$ in convex. two simple examples aer \textit{scaling} and \textit{translation}, \textit{i.e.} $\alpha S$ and $S + \alpha$ are convex. the \textit{projection} of a convex set onto some of its coordinates is convex. the \textit{sum} of two sets $S_1 + S_2$ is convex, if $S_1$ and $S_2$ are convex. we can also define the \textit{partial sum} of $S_1, S_2 \in \mathbf{R}^n \* \mathbf{R}^m$ as
+    \begin{equation}
+      S = \{(x, y_1 + y_2)\ |\ (x, y_1) \in S_1,\ (x, y_2) \in S_2\},
+    \end{equation}
+    where $x \in \mathbf{R}^n$ and $y_i \in \mathbf{R}^m$. partial sums of convex sets are convex.
+  \subsection{linear-fractional and perspective functions}
+    \subsubsection{the perspective function}
+      \paragraph{} we define
 \end{document}
