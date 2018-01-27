@@ -178,5 +178,67 @@
     where $x \in \mathbf{R}^n$ and $y_i \in \mathbf{R}^m$. partial sums of convex sets are convex.
   \subsection{linear-fractional and perspective functions}
     \subsubsection{the perspective function}
-      \paragraph{} we define
+      \paragraph{} we define \textit{perspective function} $P : \mathbf{R}^{n + 1} \to \mathbf{R}^{n}$, as $P(z, t) = z / t$, which normalizes vectors so the last component is one, and drop the last component. if $C \subset \mathbf{dom} P$ is convex then its image
+      \begin{equation}
+        P(C) = \{P(x)\ |\ x \in C\}
+      \end{equation}
+      is convex. the imverse image of a convex set under the perspective function is also convex.
+    \subsubsection{linear-fractional functions}
+      \paragraph{} a \textit{linear-fractional function} is formed by composing the perspective function with an affine function. suppose $g : \mathbf{R}^n \to \mathbf{R}^{m + 1}$ is affine $i.e.$,
+      \begin{equation}
+        g(x) =
+        \begin{bmatrix}
+          A \\
+          c^T
+        \end{bmatrix}
+        x +
+        \begin{bmatrix}
+          b \\
+          d
+        \end{bmatrix},
+      \end{equation}
+      the function $f: \mathbf{R}^n \to \mathbf{R}^m$ given by $f = P(g)$, $i.e.$,
+      \begin{equation}
+        f(x) = (Ax + b) / (c^Tx + d),\quad \mathbf{dom} f = {x\ |\ c^Tx + d > 0},
+      \end{equation}
+      is called \textit{linear-fractional} (or \textit{projective}) function. like the perspective function, linear-fractional functions preserve convexity. if we define $mathcal{P}(z) = \{t(z, 1)\ |\ t > 0\}$ in $\mathbf{R}^{n + 1}$, and
+      \begin{equation}
+        Q =
+        \begin{bmatrix}
+          A   & b  \\
+          c^T & d
+        \end{bmatrix}
+        \in \mathbf{R}^{(m + 1) * (n + 1)}
+      \end{equation}
+      then the linear-fractional function can be expressed as
+      \begin{equation}
+        f(x) = \mathcal{P}^{-1}(Q\mathcal{P}(x)).
+      \end{equation}
+\section{generalized inequalities}
+  \subsection{proper cones and generalized inequalities}
+    \paragraph{} a cone $K \subseteq \mathbf{R}^n$ is called a \textit{proper cone} if it satisfies the following:
+    \begin{itemize}
+      \item $K$ is convex.
+      \item $K$ is closed.
+      \item $K$ is \textit{solid}, which means it has nonempty interior.
+      \item $K$ is \textit{pointed}, which means that it contains no line.
+    \end{itemize}
+    we associate with the proper cone $K$ the partial ordering on $\mathbf{R}^n$ defined by
+    \begin{equation}
+      x \preceq_K y \iff y - x \in K.
+    \end{equation}
+    similarly, wedefine an associated strict partial ordering by
+    \begin{equation}
+      x \prec_K y \iff y - x \in \mathbf{int} K.
+    \end{equation}
+    when $K = \mathbf{R}_+$, the partial ordering $\preceq_K$ is the usual ordering $\leq$ on $\mathbf{R}$.
+    \subsubsection{properties of generalized inequalities}
+      \paragraph{} transitive, reflexive, antisymmetric, preserved under addition, nonnegative scaling, limits.
+  \subsection{minimum and minimal elements}
+    \paragraph{} this part is totally the same as \textit{set and graph theory} in PKU.
+\section{separaing and supporting hyperplanes}
+  \subsection{separaing hyperplane theorem}
+    \paragraph{} suppose $C$ and $D$ are nonempty disjoint convex sets, then there exists $a \neq 0$ and $b$ suvh that $a^Tx \leq b$ for all $x \in C$ and $a^Tx \ge b$ for all $x \in D$.
+    \subsubsection{proof of separaing hyperplane theorem}
+      t.b.c.
 \end{document}
