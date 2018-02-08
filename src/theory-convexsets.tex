@@ -14,7 +14,7 @@
 \rhead{DanDoge}
 \lhead{Notes on convex sets}
 \rfoot{Page \thepage}
-\cfoot{latest version: 2018/01/25}
+\cfoot{latest version: 2018/02/08}
 
 \title{Notes on convex sets}
 \date{2018-01-25}
@@ -238,7 +238,51 @@
     \paragraph{} this part is totally the same as \textit{set and graph theory} in PKU.
 \section{separaing and supporting hyperplanes}
   \subsection{separaing hyperplane theorem}
-    \paragraph{} suppose $C$ and $D$ are nonempty disjoint convex sets, then there exists $a \neq 0$ and $b$ suvh that $a^Tx \leq b$ for all $x \in C$ and $a^Tx \ge b$ for all $x \in D$.
+    \paragraph{} suppose $C$ and $D$ are nonempty disjoint convex sets, then there exists $a \neq 0$ and $b$ such that $a^Tx \leq b$ for all $x \in C$ and $a^Tx \ge b$ for all $x \in D$.
     \subsubsection{proof of separaing hyperplane theorem}
-      t.b.c.
+      we assume the (euclidean) \textit{distance} between $C$ and $D$, defined as
+      \begin{equation}
+        \mathbf{dist}(C, D) = inf\{\|u - v\|_2 \ |\ u \in C,\ v \in D\},
+      \end{equation}
+      and there exists points $c \in C$ and $d \in D$ that achieve the minimum distance, define $a = d - c,\quad b = \frac{\|d\|_2^2 - \|c\|_2^2}{2}$, we will show that the affine function
+      \begin{equation}
+        f(x) = a^T x - b = (d - c)^T(x - (1/2)(c + d))
+      \end{equation}
+      is nonpositive on $C$ and nonnegative on $D$, $i.e.$, this hyperplane separates $C$ and $D$.
+    \subsubsection{strict separation}
+      \paragraph{} the separating hyperplane we constructed above satisfies the stronger condition that $a^Tx \le b$ for all $x \in C$ and $a^Tx \ge b$ for all $x \in D$, this is called \textit{strict separation}.
+    \subsubsection{converse separaing hyperplane theorem}
+      \paragraph{} is not true, that existence of a separaing hyperplane implies that $C$ and $D$ do not intersect, however, if we suppose at least one of these two sets is open, then this is true.
+  \subsection{supporting hyperplanes}
+    \paragraph{} suppose $C \in \mathbf{R}^n$, adn $x_0$ is a point in its boundary $\mathbf{bd}C$, if $a \neq 0$ satisfies $a^Tx \leq a^Tx_0$ for all $x \in C$, then the hyperplane $\{x\ |\ a^Tx = a^Tx_0\}$ is called a \textit{supporting hyperplane} to $C$ at the point $x_0$. a basic result, called the \textit{supporting hyperplane theorem}, states that for any nonempty convex sets $C$, and any $x_0 \in \mathbf{bd} C $, there exists a supporting hyperplane to $C$ at $x_0$.
+\section{dual cones and generalized inequalities}
+  \subsection{dual cones}
+    \paragraph{} let $K$ be a cone, the sec
+    \begin{equation}
+      K^* = \{y\ |\ x^Ty \geq 0\ for\ all\ x \in K\}
+    \end{equation}
+    is called the \textit{dual cone} of $K$. $K^*$ is a cone, and is always convex, even the orginal cone $K$ is not.
+    \paragraph{} dual cone satisfy several properties, such as:
+    \begin{itemize}
+      \item $K^*$ is closed adn convex
+      \item $K_1 \subseteq K_2$ implies $K_2^* \subseteq K_1^*$
+      \item if $K$ has nonempty interior, then $K^*$ is pointed
+      \item $K^{**}$ is the closure of the convex hull of $K$
+    \end{itemize}
+  \subsection{dual generalized inequalities}
+    \paragraph{} suppose that the convex cone $K$ is proper, then it induces a generalized inequality $\preceq_K$, and the \textit{dual} of the generalized inequality $\preceq_{K^*}$
+    \paragraph{} some important properties relating a generalized inequality and its dual are:
+    \begin{itemize}
+      \item $x \preceq_K y$ iff $\lambda^Tx \leq \lambda^Ty$ for all $\lambda \succeq_{K^*} 0$
+      \item $x \prec_K y$ iff $\lambda^Tx \le \lambda^Ty$ for all $\lambda \succeq_{K^*} 0$, $\lambda \neq 0$.
+    \end{itemize}
+  \subsection{minimum adn minimal elements via dual inequalities}
+    \subsubsection{dual characterization of minimum element}
+      \paragraph{} the \textit{minimum} element: $x$ is the minimum element of $S$, with respect to the generalized inequality $\preceq_K$, iff for all $\lambda \succ_{K^*}$ 0, $x$ is the unique minmizer of $\lambda^Tz$ over $z \in S$. this means that for any $\lambda \succ_{K^*}$ 0, the hyperplane
+      \begin{equation}
+        \{z\ |\ \lambda^T(z - x) = 0\}
+      \end{equation}
+      is a strict supporting hyperplane to $S$ at $x$
+    \subsubsection{dual characterization of minimal elements}
+      \paragraph{} if $\lambda \succ_{K^*}$ 0 and $x$ minimizes $\lambda^Tz$ over $z \in S$, then $x$ is minimal, the converse is in general false, except that $S$ is convex.
 \end{document}
